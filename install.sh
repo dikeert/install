@@ -116,6 +116,21 @@ function install {
 	$cmd $thing
 }
 
+function run_installer {
+	local me="${1}"
+	local installer="${2}"
+	local path="installers/${installer}.sh"
+	local bash=$(get bash)
+
+	local func_prefix="run_installer_"
+
+	if [ -f $path ]; then
+		$bash -c "source '${me}'; source '${path}'; ${func_prefix}${installer}"
+	else
+		error "Can't find [installer=${installer}] in [${path}]"
+	fi
+}
+
 function run_all_installers {
 	local me="${1}"
 	local bash=$(get bash)
@@ -129,7 +144,11 @@ function run_all_installers {
 }
 
 if [ "$(basename $0)" = "install.sh" ]; then
-	run_all_installers "$(basename $0)"
+	if [ "_x_${1}" == "_x_" ]; then
+		run_all_installers "$(basename $0)"
+	else
+		run_installer "$(basename $0)" "${1}"
+	fi
 fi
 
 
