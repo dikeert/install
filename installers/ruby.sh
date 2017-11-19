@@ -22,9 +22,9 @@ function get_ruby {
 	rvm use --latest ruby
 
 	cat <<EOT >> "$HOME/.bashrc"
-if [ -d $HOME/.rvm ]; then
+if [ -d \$HOME/.rvm ]; then
 	source ~/.rvm/scripts/rvm
-	export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+	export PATH="\$PATH:\$HOME/.rvm/bin" # Add RVM to PATH for scripting
 fi
 EOT
 }
