@@ -87,7 +87,7 @@ function do_install_apt {
 
 function do_install_dnf {
 	log "Running dnf with sudo, password might be necessary"
-	sudo dnf install -y $1
+	sudo dnf install -y $@
 }
 
 function do_install_brew {
@@ -96,7 +96,7 @@ function do_install_brew {
 }
 
 function install {
-	local thing=$1
+	local thing=$@
 	local install_base="do_install_"
 	local install_suff=""
 
