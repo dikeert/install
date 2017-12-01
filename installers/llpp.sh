@@ -6,13 +6,15 @@ function has_llpp {
 
 function get_deps {
 	log "Installing required dependencies, it might require a password"
-	install redhat-rpm-config
-	install ocaml
+	install redhat-rpm-config \
+		mesa-libGL-devel \
+		mesa-libGLU-devel \
+		ocaml
 }
 
 function get_mupdf {
 	local mupdf="mupdf"
-	local commit="68dd6525d7b4d14b396a86448283dd4b9b625970"
+	local commit="b7749e563f93160de82c97fe34fb3fb0d3396304"
 
 	pwd
 	log "Getting required version of mupdf"
