@@ -4,9 +4,16 @@ function has_st {
 	has st
 }
 
+function get_deps {
+	log "Installing ST dependencies"
+
+	install fontconfig-devel \
+		libXft-devel
+}
+
 function get_st {
 	local curr=$(pwd)
-	cd Downloads/Soft/st
+	cd ~/Downloads/Soft/st
 	
 	log "Building st..."
 	make
@@ -21,6 +28,7 @@ function run_installer_st {
 		log "Detected st installation, skipping"
 	else
 		log "Installing st..."
+		get_deps
 		get_st
 	fi
 }
