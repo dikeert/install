@@ -7,7 +7,8 @@ function has_st {
 function get_deps {
 	log "Installing ST dependencies"
 
-	install fontconfig-devel \
+	install redhat-rpm-config \
+		fontconfig-devel \
 		libXft-devel
 }
 
