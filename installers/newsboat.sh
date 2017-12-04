@@ -6,9 +6,12 @@ function has_newsboat {
 
 function get_deps {
     log "Installing newsboat dependencies"
-    install json-devel
-    install json-c-devel
-    install stfl-devel
+    install redhat-rpm-config \
+			json-devel \
+			json-c-devel \
+			stfl-devel \
+			libxml2-devel
+
     log "Newsboat depndencies are ready!"
 }
 
