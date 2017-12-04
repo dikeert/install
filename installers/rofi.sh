@@ -8,12 +8,13 @@ function has_rofi {
 function get_deps {
 	log "Installing dependencies"
 
-	install flex
-	install flex-devel
-	install librsvg2
-	install librsvg2-devel
-	install check
-	install check-devel
+	install redhat-rpm-config \
+		flex \
+		flex-devel \
+		librsvg2 \
+		librsvg2-devel \
+		check \
+		check-devel
 }
 
 
