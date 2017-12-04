@@ -2,6 +2,12 @@
 
 PREFIX="${HOME}/.local"
 
+trap "echo EXIT;  exit" 0
+trap "echo HUP;   exit" 1
+trap "echo CTL-C; exit" 2
+trap "echo QUIT;  exit" 3
+trap "echo ERR;   exit" ERR
+
 function install_log {
   local scope=$1
   local msg=$2
@@ -114,6 +120,25 @@ function install {
 	log "Using installer [${cmd}] for [${FUNCNAME[1]}] to install [${thing}]"
 
 	$cmd $thing
+}
+
+function download {
+	local name="${1}"
+	
+	local url="${2}"
+	local path="${3}"
+	local file="${4}"
+
+	local thing="${url}/${path}/${file}"
+
+	local curl="$(get curl)"
+
+	if [ -f "${file}" ]; then
+		log "Found existing ${name} archive [file=${file}], skipping download"
+	else
+		log "Downloading ${name} [url=${thing}, curl=${curl}]"
+		$curl -LO "${thing}"
+	fi
 }
 
 function run_installer {
